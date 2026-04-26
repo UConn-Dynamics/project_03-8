@@ -1,0 +1,177 @@
+### A Pluto.jl notebook ###
+# v0.20.22
+
+using Markdown
+using InteractiveUtils
+
+# ╔═╡ 25686646-a159-4240-8018-a170bcd894cd
+begin
+	using Markdown
+
+	md"""
+	# Constraint Equations for the Block–Bar System
+
+	---
+
+	## Generalized Coordinates
+
+	```math
+	q =
+	\begin{bmatrix}
+	x_1 \\
+	y_1 \\
+	\theta_1 \\
+	x_2 \\
+	y_2 \\
+	\theta_2
+	\end{bmatrix}
+	```
+
+	where:
+
+	- ``(x_1,y_1,\theta_1)`` = sliding block coordinates  
+	- ``(x_2,y_2,\theta_2)`` = bar center coordinates
+
+	---
+
+	## 1. Block Motion Constraints
+
+	The block moves only horizontally:
+
+	```math
+	c_1 = y_1 = 0
+	```
+
+	The block does not rotate:
+
+	```math
+	c_2 = \theta_1 = 0
+	```
+
+	---
+
+	## 2. Pin Joint Geometry
+
+	The bar is pinned to the block.  
+	The pin is located a distance ``L/2`` from the bar center.
+
+	### Horizontal relation
+
+	```math
+	x_1 = x_2 - \frac{L}{2}\cos\theta_2
+	```
+
+	### Vertical relation
+
+	```math
+	y_1 = y_2 - \frac{L}{2}\sin\theta_2
+	```
+
+	---
+
+	## 3. Rearranged Constraint Form
+
+	Move all terms to the left side:
+
+	```math
+	c_3 = x_2 - x_1 - \frac{L}{2}\cos\theta_2 = 0
+	```
+
+	```math
+	c_4 = y_2 - \frac{L}{2}\sin\theta_2 = 0
+	```
+
+	---
+
+	## 4. Final Constraint Vector
+
+	```math
+	c(q,t)=
+	\begin{bmatrix}
+	c_1 \\
+	c_2 \\
+	c_3 \\
+	c_4
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	y_1 \\
+	\theta_1 \\
+	x_2-x_1-\frac{L}{2}\cos\theta_2 \\
+	y_2-\frac{L}{2}\sin\theta_2
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	0\\
+	0\\
+	0\\
+	0
+	\end{bmatrix}
+	```
+
+
+	"""
+end
+
+# ╔═╡ f17103ea-06bf-11f1-a2b0-79e68ed152eb
+md"""# Project_03 - Multibody Dynamic modeling
+
+![Sliding compound pendulum with a support block connected to a spring and rotating compound pendulum](https://raw.githubusercontent.com/cooperrc/me5180-project_02/refs/heads/main/spring_compound-2_bodies.png)
+
+In this project, a rigid bar is connected to a sliding block along a
+horizontal tracks. The sliding block is connected to a spring that stretches and compresses. The rigid bar $L = 0.4~m$ acts as a compound pendulum.  
+
+1. $x_1-y_1-$ describes block 1 position and orientation, $\theta_1$
+2. $x_2-y_2-$ describes the rigid bar position and orientation, $\theta_2$
+
+The applied forces are, 
+
+1. Spring attached to block 1, $F = -k x_1$ where $k = 10~N/m$
+2. gravity acting on block 1 and the rigid bar, $F_1 = -m_1g\hat{j}$ and $F_2 = -m_2 g\hat{j}$ where $m_1 = 0.1~kg$ and $m_2 = 0.3~kg$
+ 
+In this project, you need to 
+
+1. determine constraint equations $C(\mathbf{q},~t)$
+2. Create an augmented solution method for the dynamic motion of these two moving parts
+3. visualize the motion of the system as the two parts complete at least one oscillation
+4. calculate and show (graph or vectors) the constraint forces acting on the 2-body system
+"""
+
+# ╔═╡ 00000000-0000-0000-0000-000000000001
+PLUTO_PROJECT_TOML_CONTENTS = """
+[deps]
+Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
+"""
+
+# ╔═╡ 00000000-0000-0000-0000-000000000002
+PLUTO_MANIFEST_TOML_CONTENTS = """
+# This file is machine-generated - editing it directly is not advised
+
+julia_version = "1.12.5"
+manifest_format = "2.0"
+project_hash = "0f5202148124cb5bcca2fb6fcdeab60a396741e2"
+
+[[deps.Base64]]
+uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
+version = "1.11.0"
+
+[[deps.JuliaSyntaxHighlighting]]
+deps = ["StyledStrings"]
+uuid = "ac6e5ff7-fb65-4e79-a425-ec3bc9c03011"
+version = "1.12.0"
+
+[[deps.Markdown]]
+deps = ["Base64", "JuliaSyntaxHighlighting", "StyledStrings"]
+uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
+version = "1.11.0"
+
+[[deps.StyledStrings]]
+uuid = "f489334b-da3d-4c2e-b8f0-e476e12c162b"
+version = "1.11.0"
+"""
+
+# ╔═╡ Cell order:
+# ╟─f17103ea-06bf-11f1-a2b0-79e68ed152eb
+# ╟─25686646-a159-4240-8018-a170bcd894cd
+# ╟─00000000-0000-0000-0000-000000000001
+# ╟─00000000-0000-0000-0000-000000000002
